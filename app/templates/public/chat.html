@@ -1,0 +1,88 @@
+{% include 'public/templates/navbar.html' %}
+
+{% extends 'public/templates/public_templates.html'%}
+{% block main %}
+<style>
+  body {
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .container {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+
+</style>
+    
+    <div style="max-width: 100%;">{% block notify %}{% endblock %}</div>
+    
+    <h2>Chat Messages</h2>
+    <nav id="sidebar">
+
+      <h4>Rooms</h4>
+      {% for room in rooms%}
+      <p  class="select-room">{{ room }}</p>
+      {% for i in msg %}
+      {% if i.room == room %}
+      <div><b style="color: #000">{{i.user_name}}</b> {{i.message}}</div>
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
+
+    </nav>
+    
+    <h3 style='color: #ccc;font-size: 30px;'>No message yet..</h3>
+    
+    <div class="container darker" id="darker">
+      <div class="message_holder"></div>
+      <div class="chat"></div>    
+    </div>
+    <div id="input" style="display: none;" class="container darker">
+        <form action="" method="POST">
+            <b id="username" style="color: #000" value="{{user}}" >{{ user }}</b>
+            <input type="text" class="message" placeholder="Messages"/>
+            <input value="Submit" type="submit"/>
+        </form>
+    </div>
+
+
+    {% endblock %}

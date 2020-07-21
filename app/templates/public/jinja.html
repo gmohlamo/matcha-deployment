@@ -1,0 +1,49 @@
+{% include 'public/templates/navbar.html' %}
+
+{% extends 'public/templates/public_templates.html' %}
+
+{% import 'macros/input_macros.html' as im%}
+
+{% block title %}Jinja{% endblock %}
+
+{% block main %}
+{% block notify %} {% endblock %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Notifications</h1>
+            <!-- <p>{{profile}}</p> -->
+
+            <hr>
+            <ul>
+            
+            {% for lang in Profile %}
+
+                
+                <li>
+                    <p>
+                      
+                       <b>
+                           <a href="{{url_for('post',post_id=lang[2])}}">
+
+                               {{ lang[2] }} :
+                           </a>
+                       </b>
+                        <!-- has open your profile -->
+                        has {{lang[3]}} your profile at {{ lang[4]|low }}
+                       
+                       
+                    </p>
+                </li>
+                               
+                {% endfor %}
+            </ul>
+            
+
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
